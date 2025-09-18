@@ -8,31 +8,31 @@ spring:
 
   cloud:
     gateway:
-     server:
-       webflux:
-         routes:
-         # Movie Service Route
-           - id: movie-service
-             uri: lb://movie-service
-             predicates:
-               - Path=/api/movie
-         # Order Service Route
-           - id: order-service
-             uri: lb://order-service
-             predicates:
-               - Path=/api/order
-         # Discover Service Route
-           - id: discovery-service
-             uri: http://localhost:8761
-             predicates:
-               - Path=/eureka/web
-             filters:
-               - SetPath=/
-         # Discover Service Static Resources Route
-           - id: discovery-service-static
-             uri: http://localhost:8761
-             predicates:
-               - Path=/eureka/**
+      server:
+        webflux:
+          routes:
+            # Movie Service Route
+            - id: movie-service
+              uri: lb://movie-service
+              predicates:
+                - Path=/api/movie
+            # Order Service Route
+            - id: order-service
+              uri: lb://order-service
+              predicates:
+                - Path=/api/order
+            # Discover Service Route
+            - id: discovery-service
+              uri: http://localhost:8761
+              predicates:
+                - Path=/eureka/**
+              filters:
+                - SetPath=/
+            # Discover Service Static Resources Route
+            - id: discovery-service-static
+              uri: http://localhost:8761
+              predicates:
+                - Path=/eureka/**
 
 #http://localhost:8080/eureka/web
 
@@ -41,6 +41,17 @@ logging:
     root: INFO
     org.springframework.cloud.gateway.route.RouteDefinitionLocator: INFO
     org.springframework.cloud.gateway: TRACE
+
+
+#  security:
+#    oauth2:
+#      resourceserver:
+#        jwt:
+#          issuer-uri: http://localhost:8181/realms/spring-boot-microservices-realm
+#          #issuer-uri: http://host.docker.internal:8181/realms/spring-boot-microservices-realm
+
+
+
 
 
 

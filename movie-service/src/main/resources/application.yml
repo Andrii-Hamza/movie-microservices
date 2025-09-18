@@ -20,3 +20,9 @@ eureka:
 
 server:
   port: 0
+
+#  security:
+#    oauth2:
+#      resourceserver:
+#        jwt:
+#          issuer-uri: http://localhost:8181/realms/spring-boot-microservices-realm
